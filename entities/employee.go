@@ -1,11 +1,14 @@
 package entities
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type EmployeeRepository interface {
-	Store(employee Employee)
+	Store(employee *Employee)
 	List() []*Employee
-	Read(id int) Employee
+	Read(id int) *Employee
 	Delete(id int)
 	//Update()
 }
@@ -19,9 +22,12 @@ type Employee struct {
 	Supervisor string
 }
 
-func (ag *AcctGroup) Validate(e Employee) error {
+func (e *Employee) Validate() error {
+
+	fmt.Println(e.Age)
 
 	if e.Age < 18 {
+		fmt.Println("ti fasi")
 		return errors.New("underage employee")
 	} else if e.ID < 1 {
 		return errors.New("invalid id")

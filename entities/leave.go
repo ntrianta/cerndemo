@@ -6,9 +6,9 @@ import (
 )
 
 type LeaveRepository interface {
-	Store(leave Leave)
+	Store(leave *Leave)
 	List() []*Leave
-	Read(id int) Leave
+	Read(id int) *Leave
 	Delete(id int)
 	//Update()
 }
@@ -20,14 +20,18 @@ type Leave struct {
 	End      string
 }
 
-func (ag *AcctGroup) Validate(l Leave) error {
+func (l *Leave) Validate() error {
 
 	start, _ := time.Parse(time.RFC822, l.Start)
 	end, _ := time.Parse(time.RFC822, l.End)
+	duration := end.Sub(start).Hours()
 
-	if start.After(end) {
+	if duration < 0 {
 		return errors.New("start time after end time")
+	} else if duration > 168 {
+		return errors.New("no leave for more than a week")
 	} else {
 		return nil
 	}
+
 }
