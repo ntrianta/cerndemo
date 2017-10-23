@@ -1,17 +1,26 @@
 package usecases
 
-import "github.com/ntrianta/cerndemo/entities"
+import (
+	"fmt"
+
+	"github.com/ntrianta/cerndemo/entities"
+)
 
 type LeaveInteractor struct {
 	LeaveRepository entities.LeaveRepository
 }
 
 func (interactor *LeaveInteractor) Store(leave *entities.Leave) error {
+
+	fmt.Println("Usecases layer. Leave Interactor, store.")
+
 	err := leave.Validate()
 
 	if err != nil {
 		return err
 	}
+
+	fmt.Println("Usecases layer. Leave Interactor, store.")
 
 	interactor.LeaveRepository.Store(leave)
 	return nil
@@ -24,7 +33,13 @@ func (interactor *LeaveInteractor) List() []*entities.Leave {
 }
 
 func (interactor *LeaveInteractor) Read(id int) *entities.Leave {
+
+	fmt.Println("Usecases layer. Leave Interactor, read.")
+
 	l := interactor.LeaveRepository.Read(id)
+
+	fmt.Println("Usecases layer. Leave Interactor, read.")
+
 	return l
 }
 

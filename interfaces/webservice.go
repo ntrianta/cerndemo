@@ -35,6 +35,8 @@ type LeaveHandler struct {
 
 func (handler EmployeeHandler) Add(r *http.Request, vars map[string]string) []byte {
 
+	fmt.Println("Interfaces layer. Employee web handler, store.")
+
 	decoder := json.NewDecoder(r.Body)
 	employee := new(entities.Employee)
 	_ = decoder.Decode(employee)
@@ -58,6 +60,8 @@ func (handler EmployeeHandler) List(r *http.Request, vars map[string]string) []b
 
 func (handler EmployeeHandler) Read(r *http.Request, vars map[string]string) []byte {
 
+	fmt.Println("Interfaces layer. Employee web handler, read.")
+
 	id, _ := strconv.Atoi(vars["id"])
 
 	res := handler.EmployeeInteractor.Read(id)
@@ -76,6 +80,8 @@ func (handler EmployeeHandler) Delete(r *http.Request, vars map[string]string) [
 
 //Leave
 func (handler LeaveHandler) Add(r *http.Request, vars map[string]string) []byte {
+
+	fmt.Println("Interfaces layer. Leave web handler, store.")
 
 	decoder := json.NewDecoder(r.Body)
 	leave := new(entities.Leave)

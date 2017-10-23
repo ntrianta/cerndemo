@@ -1,6 +1,7 @@
 package infrastructure
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -39,6 +40,8 @@ func (web Web) Serve() {
 }
 
 func respond(fn func(r *http.Request, vars map[string]string) []byte) http.HandlerFunc {
+
+	fmt.Println("Infrastructure layer. Web listener.")
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		out := fn(r, mux.Vars(r))

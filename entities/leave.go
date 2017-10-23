@@ -23,18 +23,13 @@ type Leave struct {
 
 func (l *Leave) Validate() error {
 
-	timeFormat := "02-Jan-2006"
+	fmt.Println("Entities layer. Leave entity. Business rules validation")
 
-	fmt.Println(l.Start)
-	fmt.Println(l.End)
+	timeFormat := "02-Jan-2006"
 
 	start, _ := time.Parse(timeFormat, l.Start)
 	end, _ := time.Parse(timeFormat, l.End)
 	duration := end.Sub(start).Hours()
-
-	fmt.Println(start)
-	fmt.Println(end)
-	fmt.Println(duration)
 
 	if duration < 0 {
 		return errors.New("start time after end time")

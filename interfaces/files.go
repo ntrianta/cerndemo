@@ -34,6 +34,9 @@ func NewFileLeaveRepo(handler FileHandler) *FileLeaveRepo {
 }
 
 func (repo *FileEmployeeRepo) Store(employee *entities.Employee) {
+
+	fmt.Println("Interfaces layer. Employ file repository, store.")
+
 	repo.fileHandler.Store(fmt.Sprintf("=======================\n"))
 	repo.fileHandler.Store(fmt.Sprintf("Entry: %d\n", employee.ID))
 	repo.fileHandler.Store(fmt.Sprintf("First Name: %s\n", employee.Name))
@@ -49,6 +52,9 @@ func (repo *FileEmployeeRepo) List() []*entities.Employee {
 }
 
 func (repo *FileEmployeeRepo) Read(id int) *entities.Employee {
+
+	fmt.Println("Interfaces layer. Employ file repository, read.")
+
 	employee := new(entities.Employee)
 	return employee
 }
@@ -58,6 +64,9 @@ func (repo *FileEmployeeRepo) Delete(id int) {
 }
 
 func (repo *FileLeaveRepo) Store(leave *entities.Leave) {
+
+	fmt.Println("Interfaces layer. Leave file repository, store.")
+
 	repo.fileHandler.Store(fmt.Sprintf("=======================\n"))
 	repo.fileHandler.Store(fmt.Sprintf("Entry: %d\n", leave.ID))
 	repo.fileHandler.Store(fmt.Sprintf("Employee: %d\n", leave.Employee))
@@ -71,6 +80,9 @@ func (repo *FileLeaveRepo) List() []*entities.Leave {
 }
 
 func (repo *FileLeaveRepo) Read(id int) *entities.Leave {
+
+	fmt.Println("Interfaces layer. Leave file repository, read.")
+
 	leave := new(entities.Leave)
 	return leave
 }

@@ -1,6 +1,8 @@
 package usecases
 
 import (
+	"fmt"
+
 	"github.com/ntrianta/cerndemo/entities"
 )
 
@@ -9,10 +11,16 @@ type EmployeeInteractor struct {
 }
 
 func (interactor *EmployeeInteractor) Store(employee *entities.Employee) error {
+
+	fmt.Println("Usecases layer. Employee Interactor, store.")
+
 	err := employee.Validate()
 	if err != nil {
 		return err
 	}
+
+	fmt.Println("Usecases layer. Employee Interactor, store.")
+
 	interactor.EmployeeRepository.Store(employee)
 	return err
 }
@@ -23,7 +31,13 @@ func (interactor *EmployeeInteractor) List() []*entities.Employee {
 }
 
 func (interactor *EmployeeInteractor) Read(id int) *entities.Employee {
+
+	fmt.Println("Usecases layer. Employee Interactor, read.")
+
 	e := interactor.EmployeeRepository.Read(id)
+
+	fmt.Println("Usecases layer. Employee Interactor, read.")
+
 	return e
 }
 
