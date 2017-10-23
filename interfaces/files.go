@@ -7,7 +7,7 @@ import (
 )
 
 type FileHandler interface {
-	Store(writable []byte) error
+	Store(writable string) error
 	// 	List(query string) Rows
 	// 	ReadByID(query string, id int, readable *string)
 	// 	ReadByName(query string, name string, readable *int)
@@ -34,7 +34,14 @@ func NewFileLeaveRepo(handler FileHandler) *FileLeaveRepo {
 }
 
 func (repo *FileEmployeeRepo) Store(employee *entities.Employee) {
-	repo.fileHandler.Store([]byte(employee.Name))
+	repo.fileHandler.Store(fmt.Sprintf("=======================\n"))
+	repo.fileHandler.Store(fmt.Sprintf("Entry: %d\n", employee.ID))
+	repo.fileHandler.Store(fmt.Sprintf("First Name: %s\n", employee.Name))
+	repo.fileHandler.Store(fmt.Sprintf("Last Name: %s\n", employee.Surname))
+	repo.fileHandler.Store(fmt.Sprintf("Age: %d\n", employee.Age))
+	repo.fileHandler.Store(fmt.Sprintf("Organic Unit: %s\n", employee.Unit))
+	repo.fileHandler.Store(fmt.Sprintf("Supervisor: %s\n", employee.Supervisor))
+
 }
 
 func (repo *FileEmployeeRepo) List() []*entities.Employee {

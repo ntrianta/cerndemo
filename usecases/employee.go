@@ -1,8 +1,6 @@
 package usecases
 
 import (
-	"fmt"
-
 	"github.com/ntrianta/cerndemo/entities"
 )
 
@@ -12,7 +10,6 @@ type EmployeeInteractor struct {
 
 func (interactor *EmployeeInteractor) Store(employee *entities.Employee) error {
 	err := employee.Validate()
-	fmt.Println(err)
 	if err != nil {
 		return err
 	}

@@ -40,7 +40,6 @@ func (handler EmployeeHandler) Add(r *http.Request, vars map[string]string) []by
 	_ = decoder.Decode(employee)
 
 	err := handler.EmployeeInteractor.Store(employee)
-	fmt.Println(employee.Age)
 	if err != nil {
 		out := err.Error()
 		return []byte(out)

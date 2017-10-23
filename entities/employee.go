@@ -2,7 +2,6 @@ package entities
 
 import (
 	"errors"
-	"fmt"
 )
 
 type EmployeeRepository interface {
@@ -24,10 +23,7 @@ type Employee struct {
 
 func (e *Employee) Validate() error {
 
-	fmt.Println(e.Age)
-
 	if e.Age < 18 {
-		fmt.Println("ti fasi")
 		return errors.New("underage employee")
 	} else if e.ID < 1 {
 		return errors.New("invalid id")
