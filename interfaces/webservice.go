@@ -81,7 +81,11 @@ func (handler LeaveHandler) Add(r *http.Request, vars map[string]string) []byte 
 	leave := new(entities.Leave)
 	_ = decoder.Decode(leave)
 
-	handler.LeaveInteractor.Store(leave)
+	err := handler.LeaveInteractor.Store(leave)
+	if err != nil {
+		out := err.Error()
+		return []byte(out)
+	}
 	out := fmt.Sprintf("Added\n")
 	return []byte(out)
 }

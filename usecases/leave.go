@@ -6,9 +6,16 @@ type LeaveInteractor struct {
 	LeaveRepository entities.LeaveRepository
 }
 
-func (interactor *LeaveInteractor) Store(Leave *entities.Leave) error {
-	interactor.LeaveRepository.Store(Leave)
+func (interactor *LeaveInteractor) Store(leave *entities.Leave) error {
+	err := leave.Validate()
+
+	if err != nil {
+		return err
+	}
+
+	interactor.LeaveRepository.Store(leave)
 	return nil
+
 }
 
 func (interactor *LeaveInteractor) List() []*entities.Leave {

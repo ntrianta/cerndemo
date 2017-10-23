@@ -41,7 +41,6 @@ func (repo *FileEmployeeRepo) Store(employee *entities.Employee) {
 	repo.fileHandler.Store(fmt.Sprintf("Age: %d\n", employee.Age))
 	repo.fileHandler.Store(fmt.Sprintf("Organic Unit: %s\n", employee.Unit))
 	repo.fileHandler.Store(fmt.Sprintf("Supervisor: %s\n", employee.Supervisor))
-
 }
 
 func (repo *FileEmployeeRepo) List() []*entities.Employee {
@@ -59,7 +58,11 @@ func (repo *FileEmployeeRepo) Delete(id int) {
 }
 
 func (repo *FileLeaveRepo) Store(leave *entities.Leave) {
-	fmt.Println(leave)
+	repo.fileHandler.Store(fmt.Sprintf("=======================\n"))
+	repo.fileHandler.Store(fmt.Sprintf("Entry: %d\n", leave.ID))
+	repo.fileHandler.Store(fmt.Sprintf("Employee: %d\n", leave.Employee))
+	repo.fileHandler.Store(fmt.Sprintf("Start Date: %s\n", leave.Start))
+	repo.fileHandler.Store(fmt.Sprintf("End Date: %s\n", leave.End))
 }
 
 func (repo *FileLeaveRepo) List() []*entities.Leave {

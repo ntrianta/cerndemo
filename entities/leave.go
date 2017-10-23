@@ -2,6 +2,7 @@ package entities
 
 import (
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -22,9 +23,18 @@ type Leave struct {
 
 func (l *Leave) Validate() error {
 
-	start, _ := time.Parse(time.RFC822, l.Start)
-	end, _ := time.Parse(time.RFC822, l.End)
+	timeFormat := "02-Jan-2006"
+
+	fmt.Println(l.Start)
+	fmt.Println(l.End)
+
+	start, _ := time.Parse(timeFormat, l.Start)
+	end, _ := time.Parse(timeFormat, l.End)
 	duration := end.Sub(start).Hours()
+
+	fmt.Println(start)
+	fmt.Println(end)
+	fmt.Println(duration)
 
 	if duration < 0 {
 		return errors.New("start time after end time")
