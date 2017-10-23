@@ -35,10 +35,9 @@ func (interactor *LeaveInteractor) List() []*entities.Leave {
 func (interactor *LeaveInteractor) Read(id int) *entities.Leave {
 
 	fmt.Println("Usecases layer. Leave Interactor, read.")
+	fmt.Println("Usecases layer. Leave Interactor, application rules applied.")
 
 	l := interactor.LeaveRepository.Read(id)
-
-	fmt.Println("Usecases layer. Leave Interactor, read.")
 
 	return l
 }

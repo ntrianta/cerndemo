@@ -19,7 +19,7 @@ func (interactor *EmployeeInteractor) Store(employee *entities.Employee) error {
 		return err
 	}
 
-	fmt.Println("Usecases layer. Employee Interactor, store.")
+	fmt.Println("Usecases layer. Employee Interactor, application rules applied.")
 
 	interactor.EmployeeRepository.Store(employee)
 	return err
@@ -33,10 +33,9 @@ func (interactor *EmployeeInteractor) List() []*entities.Employee {
 func (interactor *EmployeeInteractor) Read(id int) *entities.Employee {
 
 	fmt.Println("Usecases layer. Employee Interactor, read.")
+	fmt.Println("Usecases layer. Employee Interactor, application rules applied.")
 
 	e := interactor.EmployeeRepository.Read(id)
-
-	fmt.Println("Usecases layer. Employee Interactor, read.")
 
 	return e
 }
